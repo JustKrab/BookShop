@@ -1,13 +1,11 @@
-package com.example.MyBookShopApp.data;
+package com.example.MyBookShopApp.data.services;
 
 
-import org.postgresql.Driver;
+import com.example.MyBookShopApp.data.BookRepository;
+import com.example.MyBookShopApp.data.entityes.Book;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
