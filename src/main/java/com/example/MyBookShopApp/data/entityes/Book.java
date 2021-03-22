@@ -40,6 +40,27 @@ public class Book {
     @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
     private List<BookToAuthor> author;
 
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
+    private List<BookReview> bookReviews;
+
+    @ManyToMany(mappedBy = "book",fetch = FetchType.LAZY)
+    private List<Genres> genres;
+
+    public List<Genres> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genres> genres) {
+        this.genres = genres;
+    }
+
+    public List<BookReview> getBookReviews() {
+        return bookReviews;
+    }
+
+    public void setBookReviews(List<BookReview> bookReviews) {
+        this.bookReviews = bookReviews;
+    }
 
     public List<BookToAuthor> getAuthor() {
         return author;
