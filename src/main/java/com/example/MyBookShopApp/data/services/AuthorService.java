@@ -24,12 +24,12 @@ public class AuthorService {
     }
 
     public List<String> getAuthorsData() {
-        List<String> authors = jdbcTemplate.query("SELECT author FROM authors", (rs, rowNum) -> rs.getString("author"));
+        List<String> authors = jdbcTemplate.query("SELECT author FROM author", (rs, rowNum) -> rs.getString("author"));
         return new ArrayList<>(authors);
     }
 
     public List<String> getAuthorsAlphabetData() {
-        List<String> authors = jdbcTemplate.query("SELECT DISTINCT SUBSTRING(author, 1, 1) as letter FROM authors", (rs, rowNum) -> rs.getString("letter"));
+        List<String> authors = jdbcTemplate.query("SELECT DISTINCT SUBSTRING(author, 1, 1) as letter FROM author", (rs, rowNum) -> rs.getString("letter"));
         return new ArrayList<>(authors);
     }
 
