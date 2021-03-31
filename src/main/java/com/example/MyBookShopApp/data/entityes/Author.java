@@ -26,18 +26,16 @@ public class Author {
     private String description;
 
 
-    @OneToMany(targetEntity = Book.class,fetch = FetchType.LAZY)
-    private List<Book> bookList = new ArrayList<>();
+    @ManyToMany(mappedBy = "author", fetch = FetchType.LAZY)
+    private List<Book> book;
 
-    @OneToMany(mappedBy = "author",fetch = FetchType.LAZY)
-    private List<BookToAuthor> authorList = new ArrayList<>();
 
-    public List<BookToAuthor> getAuthorList() {
-        return authorList;
+    public List<Book> getBook() {
+        return book;
     }
 
-    public void setAuthorList(List<BookToAuthor> authorList) {
-        this.authorList = authorList;
+    public void setBook(List<Book> book) {
+        this.book = book;
     }
 
     public Integer getId() {
@@ -81,11 +79,4 @@ public class Author {
         this.description = description;
     }
 
-    public List<Book> getBookList() {
-        return bookList;
-    }
-
-    public void setBookList(List<Book> bookList) {
-        this.bookList = bookList;
-    }
 }

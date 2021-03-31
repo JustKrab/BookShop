@@ -37,37 +37,66 @@ public class Book {
     @Column(columnDefinition = "SMALLINT NOT NULL DEFAULT 0")
     private short discount;
 
-    @OneToMany(mappedBy = "author", fetch = FetchType.LAZY)
-    private List<BookToAuthor> author;
+    @ManyToMany(targetEntity = Author.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "book2author")
+    private List<Author> author;
 
-    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
-    private List<BookReview> bookReviews;
+    @OneToMany(targetEntity = BookReview.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "book2review")
+    private List<BookReview> bookReview;
 
-    @ManyToMany(mappedBy = "book",fetch = FetchType.LAZY)
-    private List<Genres> genres;
+    @ManyToMany(targetEntity = Genres.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "genre2book")
+    private List<Genres> genre;
 
-    public List<Genres> getGenres() {
-        return genres;
-    }
+    @ManyToMany(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "book2user")
+    private List<User> user;
 
-    public void setGenres(List<Genres> genres) {
-        this.genres = genres;
-    }
+    @OneToMany(mappedBy = "book")
+    private List<FileDownload> download;
 
-    public List<BookReview> getBookReviews() {
-        return bookReviews;
-    }
 
-    public void setBookReviews(List<BookReview> bookReviews) {
-        this.bookReviews = bookReviews;
-    }
 
-    public List<BookToAuthor> getAuthor() {
+
+    public List<Author> getAuthor() {
         return author;
     }
 
-    public void setAuthor(List<BookToAuthor> author) {
+    public void setAuthor(List<Author> author) {
         this.author = author;
+    }
+
+    public List<BookReview> getBookReview() {
+        return bookReview;
+    }
+
+    public void setBookReview(List<BookReview> bookReview) {
+        this.bookReview = bookReview;
+    }
+
+    public List<Genres> getGenre() {
+        return genre;
+    }
+
+    public void setGenre(List<Genres> genre) {
+        this.genre = genre;
+    }
+
+    public List<User> getUser() {
+        return user;
+    }
+
+    public void setUser(List<User> user) {
+        this.user = user;
+    }
+
+    public List<FileDownload> getDownload() {
+        return download;
+    }
+
+    public void setDownload(List<FileDownload> download) {
+        this.download = download;
     }
 
     public Integer getId() {

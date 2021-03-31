@@ -3,7 +3,6 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.data.services.AuthorService;
 import com.example.MyBookShopApp.data.entityes.Book;
-import com.example.MyBookShopApp.data.services.BooksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,22 +14,22 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/bookshop")
-public class MainPageController {
+public class MainController {
 
-    private final BooksService booksService;
+    private final AuthorService booksService;
     private final AuthorService authorService;
 
     @Autowired
-    public MainPageController(BooksService booksService,AuthorService authorService) {
+    public MainController(AuthorService booksService, AuthorService authorService) {
         this.booksService = booksService;
         this.authorService=authorService;
     }
 
 
-    @ModelAttribute("bookData")
-    public List<Book> bookData(){
-        return booksService.getBooksData();
-    }
+//    @ModelAttribute("bookData")
+//    public List<Book> bookData(){
+////        return booksService.getBooksData();
+//    }
 
     @GetMapping("/main")
     public String mainPage(){
@@ -49,8 +48,8 @@ public class MainPageController {
 
     @GetMapping("/authors")
     public String authorsPage(Model model) {
-        model.addAttribute("letters", authorService.getAuthorsAlphabetData());
-        model.addAttribute("authors", authorService.getAuthorsData());
+//        model.addAttribute("letters", authorService.getAuthorsAlphabetData());
+//        model.addAttribute("authors", authorService.getAuthorsData());
 //        model.addAttribute("authors",authorService.getAuthorsMap());
         return "authors";
     }

@@ -1,6 +1,6 @@
 //package com.example.MyBookShopApp.config;
 //
-//import com.example.MyBookShopApp.data.BookRepository;
+//import com.example.MyBookShopApp.data.repos.BookRepository;
 //import com.example.MyBookShopApp.data.TestEntity;
 //import com.example.MyBookShopApp.data.TestEntityDao;
 //import com.example.MyBookShopApp.data.TestEntityRepoCrud;

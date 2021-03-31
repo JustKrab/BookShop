@@ -24,7 +24,7 @@ public class BalanceTransaction implements Serializable {
     private Integer value;
 
     @Id
-    @ManyToOne(targetEntity = Book.class, fetch = FetchType.LAZY)
+    @OneToOne(targetEntity = Book.class, fetch = FetchType.LAZY)
     private Book book;
 
     @Column(columnDefinition = "TEXT NOT NULL ")

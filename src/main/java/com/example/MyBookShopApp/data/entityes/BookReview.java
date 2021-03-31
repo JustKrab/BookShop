@@ -18,8 +18,8 @@ public class BookReview {
     @Column(columnDefinition = "TEXT NOT NULL")
     private String text;
 
-    @ManyToOne(targetEntity = Book.class, fetch = FetchType.LAZY)
-    private Book book;
+    @OneToOne(targetEntity = BookReview.class, fetch = FetchType.LAZY)
+    private BookReview review;
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     private User user;
@@ -49,12 +49,12 @@ public class BookReview {
         this.text = text;
     }
 
-    public Book getBook() {
-        return book;
+    public BookReview getReview() {
+        return review;
     }
 
-    public void setBook(Book book) {
-        this.book = book;
+    public void setReview(BookReview review) {
+        this.review = review;
     }
 
     public User getUser() {

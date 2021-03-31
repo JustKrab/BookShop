@@ -17,8 +17,16 @@ public class BookFile {
     @Column(columnDefinition = "VARCHAR(255) NOT NULL")
     private String path;
 
-//type
+    @OneToOne(targetEntity = BookFileType.class, fetch = FetchType.LAZY)
+    private BookFileType type;
 
+    public BookFileType getType() {
+        return type;
+    }
+
+    public void setType(BookFileType type) {
+        this.type = type;
+    }
 
     public Integer getId() {
         return id;

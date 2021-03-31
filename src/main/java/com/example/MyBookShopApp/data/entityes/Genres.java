@@ -22,6 +22,7 @@ public class Genres {
     private String name;
 
     @ManyToMany(targetEntity = Book.class, fetch = FetchType.LAZY)
+    @JoinTable(name = "genre2book")
     private List<Book> book;
 
     public Integer getId() {

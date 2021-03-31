@@ -31,6 +31,39 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<BookReviewLike> bookLikes;
 
+    @ManyToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Book> books;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<FileDownload> downloads;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Message> messages;
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public List<FileDownload> getDownloads() {
+        return downloads;
+    }
+
+    public void setDownloads(List<FileDownload> downloads) {
+        this.downloads = downloads;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
     public Integer getId() {
         return id;
     }
