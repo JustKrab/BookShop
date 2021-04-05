@@ -92,4 +92,12 @@ public class AuthorService {
                 .collect(Collectors.toList());
         return createDto(books);
     }
+
+    public AuthorRepository getAuthorRepo() {
+        return authorRepo;
+    }
+
+    public BookRepository getBookRepo() {
+        return bookRepo;
+    }
 }

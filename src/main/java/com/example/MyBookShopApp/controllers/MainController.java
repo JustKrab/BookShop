@@ -3,6 +3,7 @@ package com.example.MyBookShopApp.controllers;
 
 import com.example.MyBookShopApp.data.services.AuthorService;
 import com.example.MyBookShopApp.data.entityes.Book;
+import com.example.MyBookShopApp.data.services.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,28 +17,18 @@ import java.util.List;
 @RequestMapping("/bookshop")
 public class MainController {
 
-    private final AuthorService booksService;
-    private final AuthorService authorService;
+
+
+    private final AuthorService bookService;
 
     @Autowired
-    public MainController(AuthorService booksService, AuthorService authorService) {
-        this.booksService = booksService;
-        this.authorService=authorService;
+    public MainController(AuthorService bookService) {
+        this.bookService = bookService;
     }
 
 
-//    @ModelAttribute("bookData")
-//    public List<Book> bookData(){
-////        return booksService.getBooksData();
-//    }
-
     @GetMapping("/main")
-    public String mainPage(){
-//        model.addAttribute("bookData",booksService.getBooksData());
-//        model.addAttribute("searchPlaceHolder","new search placeHolder");
-//        model.addAttribute("serverTime",new Date());
-//        model.addAttribute("placeholderTextPart2","SERVER");
-//        model.addAttribute("messageTemplate","search.placeholder2");
+    public String mainPage() {
         return "index";
     }
 
@@ -46,16 +37,10 @@ public class MainController {
         return "genres";
     }
 
-    @GetMapping("/authors")
-    public String authorsPage(Model model) {
-//        model.addAttribute("letters", authorService.getAuthorsAlphabetData());
-//        model.addAttribute("authors", authorService.getAuthorsData());
-//        model.addAttribute("authors",authorService.getAuthorsMap());
-        return "authors";
-    }
+
 
     @GetMapping("/recent")
-    public String newPage(){
+    public String RecentPage(){
         return "recent";
     }
 
