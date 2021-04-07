@@ -5,13 +5,16 @@ import com.example.MyBookShopApp.data.entityes.Book;
 import com.example.MyBookShopApp.data.repos.AuthorRepository;
 import com.example.MyBookShopApp.data.repos.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.chrono.ChronoLocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -41,7 +44,7 @@ public class AuthorService {
         LocalDateTime dateTo = LocalDateTime.now().minusMonths(1);
         List<Book> books = bookRepo.findAll()
                 .stream()
-                .filter(b -> b.getPubDate().isAfter(ChronoLocalDate.from(dateTo)))
+                .filter(b -> b.getPubDate().isAfter(dateTo))
                 .collect(Collectors.toList());
         return createDto(books);
     }
@@ -89,6 +92,20 @@ public class AuthorService {
     public List<DTO> getPopularBooksAndAuthors() {
         List<Book> books = bookRepo.findAll().stream()
                 .filter(Book::isBestseller)
+                .collect(Collectors.toList());
+        return createDto(books);
+    }
+
+    public List<DTO> getBooksByDate(Date from, Date till) {
+        LocalDate fromDate;
+        LocalDate tillDate;
+        if (StringUtils.isEmpty(from)) {
+            return getRecentBooksAndAuthors();
+        }
+        fromDate = from.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        tillDate = till.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        List<Book> books = bookRepo.findAll().stream()
+                .filter(book -> book.getPubDate().toLocalDate().isAfter(fromDate) && book.getPubDate().toLocalDate().isBefore(tillDate))
                 .collect(Collectors.toList());
         return createDto(books);
     }

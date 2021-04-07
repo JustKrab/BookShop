@@ -2,6 +2,7 @@ package com.example.MyBookShopApp.data.entityes;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,7 @@ public class Book {
     private Integer id;
 
     @Column(columnDefinition = "DATE NOT NULL")
-    private LocalDate pubDate;
+    private LocalDateTime pubDate;
 
     @Column(columnDefinition = "BOOLEAN NOT NULL")
     private boolean isBestseller;
@@ -107,11 +108,11 @@ public class Book {
         this.id = id;
     }
 
-    public LocalDate getPubDate() {
+    public LocalDateTime getPubDate() {
         return pubDate;
     }
 
-    public void setPubDate(LocalDate pubDate) {
+    public void setPubDate(LocalDateTime pubDate) {
         this.pubDate = pubDate;
     }
 

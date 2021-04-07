@@ -29,7 +29,7 @@ public class AuthorSlugController {
         return "authors/slug";
     }
 
-    @GetMapping("/books/author/{id}")
+    @GetMapping("/bookshop/author/{id}")
     public String booksByAuthor(@PathVariable Integer id, Model model) {
         Author author = service.getAuthorById(id);
         model.addAttribute("authorById", author);
