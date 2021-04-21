@@ -32,12 +32,17 @@ public class RecentPageController {
 //        return new Pair<>("", "");
 //    }
 
+//    @GetMapping("/recent")
+//    public String recent(@RequestParam(value = "from", required = false) @DateTimeFormat(pattern = "dd.MM.yyyy") Date from,
+//                         @RequestParam(value = "to", required = false) @DateTimeFormat(pattern = "dd.MM.yyyy") Date to,
+//                         Model model) {
+//        log.warn("from: {}, to: {}", from, to);
+//        model.addAttribute("recentBooks", bookService.getBooksByDate(from, to));
+//        return "recent";
+//    }
     @GetMapping("/recent")
-    public String recent(@RequestParam(value = "from", required = false) @DateTimeFormat(pattern = "dd.MM.yyyy") Date from,
-                         @RequestParam(value = "to", required = false) @DateTimeFormat(pattern = "dd.MM.yyyy") Date to,
-                         Model model) {
-        log.warn("from: {}, to: {}", from, to);
-        model.addAttribute("recentBooks", bookService.getBooksByDate(from, to));
+    public String recent(Model model) {
+        model.addAttribute("recentBooks", bookService.getBooksByDate());
         return "recent";
     }
 }

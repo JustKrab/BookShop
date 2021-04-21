@@ -30,21 +30,19 @@ p.error-browser
             <div class="Section">
                 <div class="Authors">
                     <div class="Authors-links">
-                        <div th:each="letter : ${letters}">
-                            <a class="Authors-link" th:href="'#' + ${letter}" th:text="${letter}"></a>
+                        <div th:each="author : ${authors}">
+                            <a class="Authors-link" th:href="'#' + ${author.key.toLowerCase()}"
+                               th:text="${author.key}"></a>
                         </div>
                     </div>
-                    <div class="Authors-block">
-                        <div th:each="letter : ${letters}">
-                            <h2 class="Authors-title" th:id="${letter}" th:text="${letter}">
-                            </h2>
-                            <div class="Authors-letter">
-                                <div th:each="author : ${authors}">
-                                    <div th:if="${author.startsWith(letter)}">
-                                        <div class="Authors-item"><a href="/authors/slug.html"
-                                                                     th:text="${author}"></a>
-                                        </div>
-                                    </div>
+                    <div class="Authors-block" th:each="authorList : ${authors}">
+                        <h2 class="Authors-title" th:id="${authorList.key.toLowerCase()}" th:text="${authorList.key}">
+                        </h2>
+                        <div class="Authors-letter">
+                            <div th:each="author : ${authorList.value}">
+                                <div class="Authors-item">
+                                    <a th:href="@{/books/authors/slug/{id}/(id=${author.id})}"
+                                       th:text="${author.author}"></a>
                                 </div>
                             </div>
                         </div>

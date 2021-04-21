@@ -96,16 +96,17 @@ public class AuthorService {
         return createDto(books);
     }
 
-    public List<DTO> getBooksByDate(Date from, Date till) {
-        LocalDate fromDate;
-        LocalDate tillDate;
-        if (StringUtils.isEmpty(from)) {
-            return getRecentBooksAndAuthors();
-        }
-        fromDate = from.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        tillDate = till.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    public List<DTO> getBooksByDate() {
+//        Date from, Date till
+//        LocalDate fromDate;
+//        LocalDate tillDate;
+//        if (StringUtils.isEmpty(from)) {
+//            return getRecentBooksAndAuthors();
+//        }
+//        fromDate = from.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//        tillDate = till.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         List<Book> books = bookRepo.findAll().stream()
-                .filter(book -> book.getPubDate().toLocalDate().isAfter(fromDate) && book.getPubDate().toLocalDate().isBefore(tillDate))
+//                .filter(book -> book.getPubDate().toLocalDate().isAfter(fromDate) && book.getPubDate().toLocalDate().isBefore(tillDate))
                 .collect(Collectors.toList());
         return createDto(books);
     }
